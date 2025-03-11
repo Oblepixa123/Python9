@@ -1,39 +1,28 @@
-from PIL import ImageDraw,Image,ImageOps,ImageFilter#импортирование функций из библиотеки PIL
+from PIL import ImageDraw,Image,ImageOps,ImageFilter
 import argparse
-#image = Image.open("Python_image.webp")
-#image_format = image.format
-#new = image.rotate(30)
-#new.save("image_test.jpg")
-#image.save("image_test.png", "png")
-#img = Image.new('RGBA', (91, 91), 'white')
-#draw = ImageDraw.Draw(img)
-#raw.ellipse((0, 0, 90, 90), 'yellow', 'blue')
-#draw.ellipse((25, 20, 35, 30), 'yellow', 'blue')
-#draw.ellipse((50, 20, 60, 30), 'yellow', 'blue')
-#draw.arc((20, 40, 70, 70), 0, 180, 0)
-#img.save('draw-smile.png')
 
-def get_black_white (photo):#создание функции конвертирующей формат изображение в L и сохраняющей результат
+
+def get_black_white (photo):
     photo_bw = photo.convert('L')
     photo_bw.save("bw.jpg")
 
 
-def get_contrast (photo):#создание функции изменяющей контрастность изображения и сохраняющей результат
+def get_contrast (photo):
     photo_contrast = ImageOps.autocontrast(photo, cutoff=5)
     photo_contrast.save("contrast.jpg")
 
 
-def get_blur (photo):#создание функции размывающей изображение и сохраняющей результат
+def get_blur (photo):
     photo_blur = photo.filter(ImageFilter.GaussianBlur(radius=2.4))
     photo_blur.save("blur.jpg")
 
 
-def get_media_filter (photo):#создание функции добавляющей медианный фильтр и сохраняющей результат
+def get_media_filter (photo):
     photo_media_filter = photo.filter(ImageFilter.MedianFilter(size=3))
     photo_media_filter.save("media_filter.jpg")
 
 
-def get_frame (photo):#создание функции устанавливающей рамку на данное изображение и сохраняющее результат
+def get_frame (photo):
 
     width, height = photo.size
     frame_photo = photo.transform((width + 100, height + 100), Image.EXTENT,
@@ -41,7 +30,7 @@ def get_frame (photo):#создание функции устанавливаю�
     frame_photo.save("frame.jpg")
 
 
-def get_sepia (photo):#создание функции сохраняющей данное изображение с эффектом сепии
+def get_sepia (photo):
 
     sepia_r = 112
     sepia_g = 66
@@ -60,9 +49,9 @@ def get_sepia (photo):#создание функции сохраняющей д
     sepia_photo.save("sepia.jpg")
 
 
-def main():#создание функции хранящей в себе открытие данного изображения и вызовы функций
-    parser = argparse.ArgumentParser(description='Пример использования argparse')#создание парсера
-    #добавление аргументов с действием store true
+def main():
+    parser = argparse.ArgumentParser(description='Пример использования argparse')
+    
     parser.add_argument('-np', help='имя входного файла', default="photo.jpg")
     parser.add_argument("--get_black_white", action="store_true", help="использование черно белого фильтра")
     parser.add_argument("--get_contrast", action="store_true", help="использование контрастного фильтра")
@@ -70,8 +59,8 @@ def main():#создание функции хранящей в себе отк�
     parser.add_argument("--get_media_filter", action="store_true", help="использование медиа фильтра")
     parser.add_argument("--get_frame", action="store_true", help="использование рамки")
     parser.add_argument("--get_sepia", action="store_true", help="использование фильтра сепии") 
-    args = parser.parse_args()#парсим аргумент
-    #принты со значениями аргументов
+    args = parser.parse_args()
+    
     print("название файла", args.np)
     print("использование черно белого фильтра : ",args.get_black_white)
     print("использование контрастного фильтра : ",args.get_contrast)
@@ -80,8 +69,8 @@ def main():#создание функции хранящей в себе отк�
     print("использование рамки : ",args.get_frame)
     print("использование фильтра сепии : ",args.get_sepia)
     
-    photo = Image.open(f"{args.np}")#открытие фотографии
-    #условные конструкции с вызовами функций в зависимости от их значений
+    photo = Image.open(f"{args.np}")
+    
     if args.get_blur:
         get_blur(photo)
     if args.get_sepia:
