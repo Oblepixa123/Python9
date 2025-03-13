@@ -42,3 +42,5 @@ python main.py --get_contrast
 ```bash
 python main.py --get_frame
 ```
+
+Проект выполнен в образовательных целях на онлайн-курсе "Основы Python" школы "Лидер".
