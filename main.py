@@ -65,7 +65,7 @@ def main():
     print("использование черно белого фильтра : ",args.get_black_white)
     print("использование контрастного фильтра : ",args.get_contrast)
     print("использование фильтра размытия : ",args.get_blur)
-    print("использование рамки : ",args.get_media_filter)
+    print("использование медиа фильтра : ",args.get_media_filter)
     print("использование рамки : ",args.get_frame)
     print("использование фильтра сепии : ",args.get_sepia)
     
@@ -85,3 +85,6 @@ def main():
         get_frame(photo)
  
     
+
+if __name__ == "__main__":
+    main()
