@@ -61,13 +61,6 @@ def main():
     parser.add_argument("--get_sepia", action="store_true", help="использование фильтра сепии") 
     args = parser.parse_args()
     
-    print("название файла", args.np)
-    print("использование черно белого фильтра : ",args.get_black_white)
-    print("использование контрастного фильтра : ",args.get_contrast)
-    print("использование фильтра размытия : ",args.get_blur)
-    print("использование медиа фильтра : ",args.get_media_filter)
-    print("использование рамки : ",args.get_frame)
-    print("использование фильтра сепии : ",args.get_sepia)
     
     photo = Image.open(f"{args.np}")
     
